@@ -5,7 +5,9 @@ phases:
     commands:
       - echo Logging in to DockerHub...
       - export DOCKER_PASSWORD=$(aws secretsmanager get-secret-value --secret-id DockerPassword --query SecretString --output text)
-      - echo $DOCKER_PASSWORD | docker login --username "$DOCKER_USERNAME" --password-stdin
+      - echo $DOCKER_USERNAME
+      - echo $DOCKER_PASSWORD
+      - echo $DOCKER_PASSWORD | docker login --username $DOCKER_USERNAME --password-stdin
   build:
     commands:
       - echo Building the Docker image...  
