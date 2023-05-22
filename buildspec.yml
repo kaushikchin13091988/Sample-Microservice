@@ -1,10 +1,13 @@
 version: 0.2
 
+env:
+  secrets-manager:
+    DOCKER_PASSWORD: "DockerPassword:DOCKER_PASSWORD"
+
 phases:
   pre_build:
     commands:
       - echo Logging in to DockerHub...
-      - export DOCKER_PASSWORD=$(aws secretsmanager get-secret-value --secret-id DockerPassword --query SecretString --output text)
       - echo $DOCKER_USERNAME
       - echo $DOCKER_PASSWORD
       - echo $DOCKER_PASSWORD | docker login --username $DOCKER_USERNAME --password-stdin
