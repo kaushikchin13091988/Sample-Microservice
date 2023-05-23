@@ -8,10 +8,10 @@ phases:
   pre_build:
     commands:
       - echo Logging in to DockerHub...
-      - echo Docker user name: $DOCKER_USERNAME
-      - echo Docker password: $DOCKER_PASSWORD
-      - echo Docker image name: $DOCKER_IMAGE_NAME
-      - echo Docker image tag: $DOCKER_IMAGE_TAG
+      - echo "Docker user name: $DOCKER_USERNAME"
+      - echo "Docker password: $DOCKER_PASSWORD"
+      - echo "Docker image name: $DOCKER_IMAGE_NAME"
+      - echo "Docker image tag: $DOCKER_IMAGE_TAG"
       - echo $DOCKER_PASSWORD | docker login --username $DOCKER_USERNAME --password-stdin
   build:
     commands:
