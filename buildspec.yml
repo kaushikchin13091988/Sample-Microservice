@@ -2,7 +2,8 @@ version: 0.2
 
 env:
   secrets-manager:
-    DOCKER_PASSWORD: "DockerPassword:DOCKER_PASSWORD"
+    DOCKER_USERNAME: "DockerCredentials:DockerUsername"
+    DOCKER_PASSWORD: "DockerCredentials:DockerPassword"
 
 phases:
   pre_build:
