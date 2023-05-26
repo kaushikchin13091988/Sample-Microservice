@@ -2,9 +2,9 @@ version: 0.2
 
 env:
   secrets-manager:
-    DOCKER_USERNAME: "DockerCredentials:DockerUsername"
-    DOCKER_PASSWORD: "DockerCredentials:DockerPassword"
-
+    DOCKER_USERNAME: arn:aws:secretsmanager:us-east-1:385501908346:secret:DockerCredentials:DockerUsername
+    DOCKER_PASSWORD: arn:aws:secretsmanager:us-east-1:385501908346:secret:DockerCredentials:DockerPassword
+    
 phases:
   pre_build:
     commands:
@@ -19,5 +19,6 @@ phases:
       - echo Pushing the Docker image...
       - docker push $DOCKER_USERNAME/$DOCKER_IMAGE_NAME:$DOCKER_IMAGE_TAG
       - printf '[{"name":"%s","imageUri":"%s"}]' "$DOCKER_IMAGE_NAME" "$DOCKER_USERNAME/$DOCKER_IMAGE_NAME:$DOCKER_IMAGE_TAG" > imagedefinitions.json
+      
 artifacts:
   files: imagedefinitions.json
