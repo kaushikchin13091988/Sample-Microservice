@@ -2,8 +2,7 @@ version: 0.2
 
 env:
   secrets-manager:
-    DOCKER_USERNAME: arn:aws:secretsmanager:us-east-1:385501908346:secret:DockerCredentials:DockerUsername
-    DOCKER_PASSWORD: arn:aws:secretsmanager:us-east-1:385501908346:secret:DockerCredentials:DockerPassword
+    DOCKER_PASSWORD: arn:aws:secretsmanager:us-east-1:$AWS_ACCOUNT_ID:secret:DockerCredentials:DockerPassword
     
 phases:
   pre_build:
