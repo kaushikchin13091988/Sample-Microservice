@@ -8,7 +8,7 @@ phases:
   pre_build:
     commands:
       - echo Logging in to DockerHub...
-      - echo $DOCKER_PASSWORD | docker login --username $DOCKER_USERNAME --password-stdin
+      - aws secretsmanager get-secret-value --secret-id $DOCKER_PASSWORD --query DockerPassword --output text | docker login --username $DOCKER_USERNAME --password-stdin
   build:
     commands:
       - echo Building the Docker image...  
