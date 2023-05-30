@@ -3,14 +3,12 @@ version: 0.2
 env:
   shell: bash
   secrets-manager:
-    DOCKER_PASSWORD: "arn:aws:secretsmanager:us-east-1:385501908346:secret:DockerCredentials:DockerPassword"
+    DOCKER_PASSWORD: "arn:aws:secretsmanager:us-east-1:$AWS_ACCOUNT_ID:secret:DockerCredentials:DockerPassword"
     
 phases:
   pre_build:
     commands:
       - echo Logging in to DockerHub...
-      - echo $DOCKER_USER_NAME
-      - echo "$DOCKER_USER_NAME"
       - docker login --username $DOCKER_USER_NAME --password $DOCKER_PASSWORD
   build:
     commands:
