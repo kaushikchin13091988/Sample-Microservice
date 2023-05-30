@@ -3,7 +3,7 @@ version: 0.2
 env:
   shell: bash
   secrets-manager:
-    DOCKER_PASSWORD: DockerCredentials:DockerPassword
+    DOCKER_PASSWORD: "DockerCredentials:DockerPassword"
     
 phases:
   pre_build:
