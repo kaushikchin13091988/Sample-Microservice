@@ -11,7 +11,7 @@ phases:
       - echo Logging in to DockerHub...
       - echo $DOCKER_USERNAME
       - echo "$DOCKER_USERNAME"
-      - docker login --username $DOCKER_USERNAME --password $DOCKER_PASSWORD
+      - docker login --username "kaushikc139" --password $DOCKER_PASSWORD
   build:
     commands:
       - echo Building the Docker image...  
