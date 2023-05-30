@@ -3,24 +3,24 @@ version: 0.2
 env:
   shell: bash
   secrets-manager:
-    DOCKER_PASSWORD: "DockerCredentials:DockerPassword"
+    DOCKER_PASSWORD: "arn:aws:secretsmanager:us-east-1:385501908346:secret:DockerCredentials:DockerPassword"
     
 phases:
   pre_build:
     commands:
       - echo Logging in to DockerHub...
-      - echo $DOCKER_USERNAME
-      - echo "$DOCKER_USERNAME"
-      - docker login --username "kaushikc139" --password $DOCKER_PASSWORD
+      - echo $DOCKER_USER_NAME
+      - echo "$DOCKER_USER_NAME"
+      - docker login --username $DOCKER_USER_NAME --password $DOCKER_PASSWORD
   build:
     commands:
       - echo Building the Docker image...  
-      - docker build -t $DOCKER_USERNAME/$DOCKER_IMAGE_NAME:$DOCKER_IMAGE_TAG .
+      - docker build -t $DOCKER_USER_NAME/$DOCKER_IMAGE_NAME:$DOCKER_IMAGE_TAG .
   post_build:
     commands:
       - echo Pushing the Docker image...
-      - docker push $DOCKER_USERNAME/$DOCKER_IMAGE_NAME:$DOCKER_IMAGE_TAG
-      - printf '[{"name":"%s","imageUri":"%s"}]' "$DOCKER_IMAGE_NAME" "$DOCKER_USERNAME/$DOCKER_IMAGE_NAME:$DOCKER_IMAGE_TAG" > imagedefinitions.json
+      - docker push $DOCKER_USER_NAME/$DOCKER_IMAGE_NAME:$DOCKER_IMAGE_TAG
+      - printf '[{"name":"%s","imageUri":"%s"}]' "$DOCKER_IMAGE_NAME" "$DOCKER_USER_NAME/$DOCKER_IMAGE_NAME:$DOCKER_IMAGE_TAG" > imagedefinitions.json
       
 artifacts:
   files: imagedefinitions.json
